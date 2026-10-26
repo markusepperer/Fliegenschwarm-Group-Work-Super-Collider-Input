@@ -1,2 +1,2 @@
-# Fliegenschwarm Group Work Super Collier Input
+# Fliegenschwarm Group Work Super Collider nput
 IEM Computermusik Aktuell mit David Pirro
