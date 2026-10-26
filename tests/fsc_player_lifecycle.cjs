@@ -51,6 +51,17 @@ const seen=new Set();for(now=10;now<=120000;now+=10){range.tick();seen.add(range
 assert.deepEqual([...seen].sort(),[1,2,3]);
 now=0;const recovery=context('bio_trajektorien','');recovery.init();assert(!recovery.samples.length);
 recovery.patcher.filepath=abstraction;recovery.start();assert(recovery.running && recovery.samples.length);
+// Explicit resets must discard a flight queued in the previous playback state.
+now=0;const restarted=context('bio_trajektorien',abstraction);
+restarted.init();restarted.loop(1);restarted.start();restarted.flight(5);restarted.restart();
+assert.equal(restarted.pendingFlight,null);
+now=restarted.samples[restarted.samples.length-1][0]+1;restarted.tick();
+assert.equal(restarted.selected,1);assert(restarted.running);
+now=0;const switched=context('bio_trajektorien',abstraction);
+switched.init();switched.loop(1);switched.start();switched.flight(500);switched.species(1);switched.start();
+assert.equal(switched.pendingFlight,null);
+now=switched.samples[switched.samples.length-1][0]+1;switched.tick();
+assert(switched.running);assert.equal(switched.selected,1);assert.equal(switched._errors.length,0);
 // Nested scripts and macOS volume-style saved paths both use the local root.
 for(const outer of [abstraction,'Macintosh HD:'+abstraction]){
  const c=context('preset_path',outer,3);c.jsarguments[1]=prefix+'fly_notches.json';c.read();c.write();
@@ -62,5 +73,5 @@ for(const script of ['quad_motion_recorder','audio_record_path']){
 assert.equal(basenameLookups,0,'Old self-file lookup must never run');
 console.log(JSON.stringify({status:'PASS',voices:50,simulated_seconds_per_voice:120,
  transitions,finite_positions_checked:positions,range_flights_seen:[...seen].sort(),
- recovery_after_initial_path_failure:true,mac_volume_paths:true,basename_lookups:basenameLookups,
+ recovery_after_initial_path_failure:true,restart_clears_pending:true,bank_switch_clears_pending:true,mac_volume_paths:true,basename_lookups:basenameLookups,
  file_opens:opened,native_max_test:false},null,2));

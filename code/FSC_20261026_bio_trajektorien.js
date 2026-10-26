@@ -207,7 +207,7 @@ function totalDuration(){
 function species(v){
  v=Number(v);if(!isFinite(v))return;v=v?1:0;
  if(v===bankIndex){sync();return;}
- task.cancel();running=false;bridge=null;
+ task.cancel();running=false;bridge=null;pendingFlight=null;
  bankIndex=v;flightCount=v?42:700;dataFolder='../data/';filePrefix=v?'FSC_20261026_moskito_':'FSC_20261026_fruchtfliege_';flightTimes=bankTimes[v];
  closureTimes={};durationKey='';selectionDuration=0;
  selected=1;first=1;finalFlight=Math.min(10,flightCount);
@@ -306,7 +306,7 @@ function advance(now){
 }
 function start(){if(!ready)init();if(running)return;if(!samples.length&&!loadFlight(selected))return;if(elapsed>=samples[samples.length-1][0]){if(!loadFlight(bounds()[0]))return;}running=true;last=Date.now();emit();status(bridge?'Verbindung':'Laeuft');task.schedule(10);}
 function stop(){advance(Date.now());running=false;task.cancel();emit();status('Gestoppt');}
-function restart(){var was=running;if(!loadFlight(bounds()[0]))return;running=was;last=Date.now();emit();status(running?'Laeuft':'Bereit');}
+function restart(){pendingFlight=null;var was=running;if(!loadFlight(bounds()[0]))return;running=was;last=Date.now();emit();status(running?'Laeuft':'Bereit');}
 function speed(v){v=Number(v);if(!isFinite(v))return;advance(Date.now());rate=Math.max(0,Math.min(100,v));sync();emit();}
 function msg_int(v){if(v)start();else stop();}
 function tick(){if(!running)return;advance(Date.now());emit();if(running)task.schedule(10);}

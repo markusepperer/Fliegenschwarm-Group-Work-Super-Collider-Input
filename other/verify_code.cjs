@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const vm = require('vm');
 const assert = require('assert');
-const manifest = JSON.parse(fs.readFileSync(path.join(__dirname, 'isolation_manifest.json')));
+const manifest = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', 'isolation_manifest.json')));
 const root = path.resolve(__dirname, '..'), prefix = manifest.prefix;
 const codeDir = path.join(root, 'code');
 const files = fs.readdirSync(codeDir).filter(n => n.endsWith('.js'));
@@ -24,7 +24,7 @@ function context(file, namespace) {
     this.close = () => {this.isopen=false;};
   }
   function Global(name) {globals.push(name); assert(name.startsWith(prefix));}
-  const c = {Task, File, Global, jsarguments:[file,namespace], inlet:0,
+  const c = {Task, File, Global, patcher:{filepath:path.join(root,'patchers',prefix+'MS_Bio_Trajektorien.maxpat')}, jsarguments:[file,namespace], inlet:0,
     outlet:function(){}, error:function(){}, post:function(){},
     arrayfromargs:a=>Array.from(a),
     messnamed:function(){sent.push(Array.from(arguments));}

@@ -3,7 +3,7 @@ from pathlib import Path
 import hashlib, json, re, unicodedata
 
 HERE = Path(__file__).resolve().parent
-manifest = json.loads((HERE / 'isolation_manifest.json').read_text())
+manifest = json.loads((HERE.parent / 'data/isolation_manifest.json').read_text())
 root, source = HERE.parent, Path(manifest['source'])
 prefix = manifest['prefix']
 checks = []
@@ -27,6 +27,7 @@ assert not any(p.is_symlink() for p in root.rglob('*')), 'Symbolic link found'
 for old, new in manifest['file_mapping'].items():
     if Path(old).name == '.DS_Store': continue
     p = root / new
+    if p.suffix == ".maxproj": p = next(root.glob("*.maxproj"))
     assert p.is_file(), p
     assert p.stat().st_nlink == 1
     if source_available: assert p.stat().st_ino != (source / old).stat().st_ino

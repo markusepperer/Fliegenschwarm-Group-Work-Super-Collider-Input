@@ -38,6 +38,8 @@ var initializationTask = new Task(finishInitialization, this);
 var pendingEntry = null;
 var deliveryPhase = 0;
 var voiceActive = [];
+// Desired flight controls survive inactivity, including individual overrides.
+var voiceFlightSettings = [];
 for (var voiceStateIndex = 0; voiceStateIndex <= maximum; voiceStateIndex++) {
     voiceActive[voiceStateIndex] = false;
 }
@@ -117,8 +119,20 @@ function scheduledActive(voice) {
     return active;
 }
 
+function rememberFlightCommands(voice, commands) {
+    var saved = voiceFlightSettings[voice] || [];
+    for (var i = 0; i < commands.length; i++) {
+        var command = commands[i];
+        if (!/^(flight|tempo|mode|loop|first|last)$/.test(command.name)) continue;
+        if (!command.args.length || !isFinite(Number(command.args[0]))) continue;
+        saved = mergeCommands(saved, [{name:command.name, args:command.args.slice(0)}]);
+    }
+    voiceFlightSettings[voice] = saved;
+}
+
 function beginDelivery(entries) {
     if (!entries.length) return;
+    for (var e = 0; e < entries.length; e++) rememberFlightCommands(entries[e].voice, entries[e].commands);
     var all = queuedEntries().concat(entries), merged = [], positions = {};
     for (var i = 0; i < all.length; i++) {
         var entry = all[i], key = String(entry.voice);
@@ -256,9 +270,10 @@ function setCount(v) {
                 {name:"alignmentgroup",args:[1,alignments[1]]},{name:"alignmentgroup",args:[2,alignments[2]]},{name:"alignmentgroup",args:[3,alignments[3]]},{name:"alignmentgroup",args:[4,alignments[4]]},
                 {name:"escapestrengthgroup",args:[1,escapeStrengths[1]]},{name:"escapestrengthgroup",args:[2,escapeStrengths[2]]},{name:"escapestrengthgroup",args:[3,escapeStrengths[3]]},{name:"escapestrengthgroup",args:[4,escapeStrengths[4]]},
                 {name:"escapereturngroup",args:[1,escapeReturns[1]]},{name:"escapereturngroup",args:[2,escapeReturns[2]]},{name:"escapereturngroup",args:[3,escapeReturns[3]]},{name:"escapereturngroup",args:[4,escapeReturns[4]]},
-                {name:"gain",args:[0]},{name:"portalmode",args:[portalMode]},{name:"portalx",args:[portalX]},{name:"portaly",args:[portalY]},{name:"portaldirection",args:[portalDirection]},{name:"portalwidth",args:[portalWidth]},{name:"portalspeed",args:[portalSpeed]},{name:"portaldeviation",args:[portalDeviation]},{name:"portalorigin",args:[1]},{name:"active",args:[1]},{name:"gain",args:[1]},
+                {name:"gain",args:[0]},{name:"portalmode",args:[portalMode]},{name:"portalx",args:[portalX]},{name:"portaly",args:[portalY]},{name:"portaldirection",args:[portalDirection]},{name:"portalwidth",args:[portalWidth]},{name:"portalspeed",args:[portalSpeed]},{name:"portaldeviation",args:[portalDeviation]},{name:"portalorigin",args:[1]},{name:"active",args:[1]},{name:"gain",args:[1]}
+            ].concat(voiceFlightSettings[voice] || [], [
                 {name:(swarmRunning && voice <= movingCount) ? "start" : "stop", args:[]}
-            ]});
+            ])});
         } else if (shouldBeActive) {
             // A changed swarm size gives every remaining voice a new, centered grid slot.
             var existingCommands = [
@@ -404,7 +419,7 @@ function anything() {
 
     // Remember the user-defined Mode-1 bounds as part of the global flight
     // material state. The messages still fall through and reach the voices.
-    if ((messagename === "first" || messagename === "last") && args.length) {
+    if (selectedTarget === 0 && (messagename === "first" || messagename === "last") && args.length) {
         var rangeBoundary = Math.floor(Number(args[0]));
         if (isFinite(rangeBoundary)) {
             rangeBoundary = Math.max(1, Math.min(700, rangeBoundary));
@@ -460,7 +475,7 @@ function anything() {
         return;
     }
 
-    if (messagename === "mode" && args.length) {
+    if (selectedTarget === 0 && messagename === "mode" && args.length) {
         var newMode = Math.floor(Number(args[0]));
         if (isFinite(newMode)) currentMode = Math.max(0, Math.min(2, newMode));
     }
@@ -525,6 +540,10 @@ function anything() {
     if (messagename === "tempo" && selectedTarget === 0 && selectedSwarm > 0) {
         var subgroupTempo = Number(args[0]);
         if (!isFinite(subgroupTempo)) return;
+        for (var futureVoice = 1; futureVoice <= maximum; futureVoice++) {
+            if (((futureVoice - 1) % swarmCount) + 1 === selectedSwarm)
+                rememberFlightCommands(futureVoice, [{name:"tempo", args:args}]);
+        }
         var subgroupTempoEntries = [];
         for (var subgroupVoice = 1; subgroupVoice <= current; subgroupVoice++) {
             var subgroup = ((subgroupVoice - 1) % swarmCount) + 1;
@@ -539,6 +558,12 @@ function anything() {
 
     // Route ordinary controls through the same queue. A synchronous broadcast
     // here could steal poly~'s target between a deferred target and its payload.
+    // A global edit also defines the state of voices enabled later. Targeted
+    // edits affect only their voice; subsequent global edits supersede them.
+    var rememberFrom = selectedTarget || 1;
+    var rememberTo = selectedTarget || maximum;
+    for (var rememberedVoice = rememberFrom; rememberedVoice <= rememberTo; rememberedVoice++)
+        rememberFlightCommands(rememberedVoice, [{name:messagename, args:args}]);
     var controlEntries = [];
     if (selectedTarget === 0) {
         var controlCount = initialized ? current : pendingInitialCount;
