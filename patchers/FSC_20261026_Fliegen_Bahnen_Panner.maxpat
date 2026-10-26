@@ -149,7 +149,7 @@
                     115.0,
                     49.0
                   ],
-                  "text": "read \"/Users/macbook/Documents/ChatGPT/Fliegenschwarm/output/THE_FLY_SC_Arbeitskopie/data/FSC_20261026_fliegensynthmain_setup.json\""
+                  "text": "read"
                 }
               },
               {
@@ -183,6 +183,24 @@
                     324.0,
                     30.0,
                     30.0
+                  ]
+                }
+              },
+              {
+                "box": {
+                  "id": "fsc-preset-path-FSC_20261026_fliegensynthmain_setup",
+                  "maxclass": "newobj",
+                  "text": "js FSC_20261026_preset_path.js FSC_20261026_fliegensynthmain_setup.json",
+                  "numinlets": 1,
+                  "numoutlets": 1,
+                  "outlettype": [
+                    ""
+                  ],
+                  "patching_rect": [
+                    1080.0,
+                    710.0,
+                    560.0,
+                    22.0
                   ]
                 }
               }
@@ -239,7 +257,7 @@
               {
                 "patchline": {
                   "destination": [
-                    "obj-3",
+                    "fsc-preset-path-FSC_20261026_fliegensynthmain_setup",
                     0
                   ],
                   "source": [
@@ -268,6 +286,18 @@
                   ],
                   "source": [
                     "setup-slot",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "fsc-preset-path-FSC_20261026_fliegensynthmain_setup",
+                    0
+                  ],
+                  "destination": [
+                    "obj-3",
                     0
                   ]
                 }
@@ -2180,7 +2210,7 @@
             200.0,
             22.0
           ],
-          "text": "write \"/Users/macbook/Documents/ChatGPT/Fliegenschwarm/output/THE_FLY_SC_Arbeitskopie/data/FSC_20261026_fliegensynthmain_setup.json\""
+          "text": "write"
         }
       },
       {
@@ -2197,6 +2227,24 @@
             33.0
           ],
           "text": "Shift-Klick = Preset speichern · Klick = Preset laden · BANK SPEICHERN = JSON"
+        }
+      },
+      {
+        "box": {
+          "id": "fsc-preset-path-FSC_20261026_fliegensynthmain_setup",
+          "maxclass": "newobj",
+          "text": "js FSC_20261026_preset_path.js FSC_20261026_fliegensynthmain_setup.json",
+          "numinlets": 1,
+          "numoutlets": 1,
+          "outlettype": [
+            ""
+          ],
+          "patching_rect": [
+            1080.0,
+            710.0,
+            560.0,
+            22.0
+          ]
         }
       }
     ],
@@ -2702,11 +2750,23 @@
       {
         "patchline": {
           "destination": [
-            "setup-storage",
+            "fsc-preset-path-FSC_20261026_fliegensynthmain_setup",
             0
           ],
           "source": [
             "setup-writeagain-new",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "fsc-preset-path-FSC_20261026_fliegensynthmain_setup",
+            0
+          ],
+          "destination": [
+            "setup-storage",
             0
           ]
         }

@@ -1,5 +1,5 @@
 {
-  "name": "THE_FLY_SC_Arbeitskopie",
+  "name": "Fliegenschwarm Group Work Super Collider Input",
   "version": 1,
   "creationdate": 3873181848,
   "modificationdate": 3875206479,
@@ -265,6 +265,10 @@
         "local": 1
       },
       "FSC_20261026_audio_record_path.js": {
+        "kind": "javascript",
+        "local": 1
+      },
+      "FSC_20261026_preset_path.js": {
         "kind": "javascript",
         "local": 1
       }

@@ -15,7 +15,7 @@ function readJSON(path){
  var text=parts.join('').replace(/^\uFEFF/,'');
  try{return JSON.parse(text);}catch(e){throw new Error('Ungueltige JSON-Datei: '+path+' ('+text.length+' Zeichen): '+e);}
 }
-function base(){return "/Users/macbook/Documents/ChatGPT/Fliegenschwarm/output/THE_FLY_SC_Arbeitskopie/code/";}
+function base(){return fscCodeFolder();}
 // Synthetic continuation: replay a recent measured motion motif, with endpoint guidance.
 // All coordinates and speeds here are in the already normalized XY field.
 var bridge=null;
@@ -311,3 +311,13 @@ function speed(v){v=Number(v);if(!isFinite(v))return;advance(Date.now());rate=Ma
 function msg_int(v){if(v)start();else stop();}
 function tick(){if(!running)return;advance(Date.now());emit();if(running)task.schedule(10);}
 function notifydeleted(){task.cancel();task.freepeer();}
+
+// Resolve only this uniquely named local script; never use a fixed checkout path.
+function fscCodeFolder(){
+ var f=new File(jsarguments[0],"read");
+ if(!f.isopen)throw new Error("Local FSC script not found: "+jsarguments[0]);
+ var folder=f.foldername;f.close();
+ if(!folder)throw new Error("Local FSC code folder unavailable");
+ return folder.replace(/\/$/,"")+"/";
+}
+function fscLocalPath(relative){return fscCodeFolder()+"../"+relative;}

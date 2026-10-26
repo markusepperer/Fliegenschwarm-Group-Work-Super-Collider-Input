@@ -3,7 +3,7 @@ const path = require('path');
 const vm = require('vm');
 const assert = require('assert');
 const manifest = JSON.parse(fs.readFileSync(path.join(__dirname, 'isolation_manifest.json')));
-const root = manifest.root, prefix = manifest.prefix;
+const root = path.resolve(__dirname, '..'), prefix = manifest.prefix;
 const codeDir = path.join(root, 'code');
 const files = fs.readdirSync(codeDir).filter(n => n.endsWith('.js'));
 for (const file of files) new vm.Script(fs.readFileSync(path.join(codeDir, file), 'utf8'), {filename:file});
@@ -11,10 +11,10 @@ let opened = [], globals = [], sent = [];
 function context(file, namespace) {
   function Task() { this.cancel = this.schedule = this.repeat = function() {}; }
   function File(filename, mode) {
-    const resolved = path.resolve(filename);
+    const resolved = path.resolve(path.isAbsolute(filename)?filename:path.join(codeDir,filename));
     assert(resolved.startsWith(root + path.sep), 'File access outside working copy: ' + filename);
     opened.push([resolved, mode]);
-    this.isopen = true; this.position = 0;
+    this.isopen = true; this.position = 0; this.foldername = path.dirname(resolved);
     this.data = mode === 'read' ? fs.readFileSync(resolved, 'utf8') : '';
     this.eof = this.data.length;
     this.readchars = n => {const s=this.data.slice(this.position,this.position+n);this.position+=s.length;return s.split('');};
@@ -81,9 +81,19 @@ let recordMessage;
 recordPath.outlet=function(){recordMessage=Array.from(arguments);};
 recordPath.bang();
 assert.equal(recordMessage[1],'open');
-assert.equal(recordMessage[2],path.join(root,'recordings',prefix+'10001_audio.wav'));
+assert.equal(path.resolve(recordMessage[2]),path.join(root,'recordings',prefix+'10001_audio.wav'));
+for(const preset of ['fly_notches','fliegensynthmain_setup']) {
+ const module=context(prefix+'preset_path.js',prefix+preset+'.json');
+ let message;module.outlet=function(){message=Array.from(arguments);};
+ for(const command of ['read','write']) {
+  module[command]();assert.equal(message[1],command);
+  const resolved=path.resolve(message[2]);
+  assert.equal(resolved,path.join(root,'data',prefix+preset+'.json'));
+  assert(fs.existsSync(resolved));
+ }
+}
 console.log(JSON.stringify({status:'PASS',syntax_checked:files.length,flight_loads:742,
   arbitrary_recorder_paths_redirected:3,global_names_checked:globals.length,
   named_messages_checked:sent.length,poly_instances_with_distinct_buses:voiceBuses.size,
-  mono_and_xy_links_checked:100,recording_instance_path_checked:true,
+  mono_and_xy_links_checked:100,recording_instance_path_checked:true,preset_paths_checked:4,
   real_files_written:0,max_runtime:false},null,2));

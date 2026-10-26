@@ -2062,7 +2062,7 @@
                     63.0,
                     22.0
                   ],
-                  "text": "write \"/Users/macbook/Documents/ChatGPT/Fliegenschwarm/output/THE_FLY_SC_Arbeitskopie/data/FSC_20261026_fly_notches.json\""
+                  "text": "write"
                 }
               },
               {
@@ -2080,7 +2080,7 @@
                     34.0,
                     22.0
                   ],
-                  "text": "write \"/Users/macbook/Documents/ChatGPT/Fliegenschwarm/output/THE_FLY_SC_Arbeitskopie/data/FSC_20261026_fly_notches.json\""
+                  "text": "write"
                 }
               },
               {
@@ -4638,11 +4638,29 @@
                 "box": {
                   "id": "fsc-local-read",
                   "maxclass": "message",
-                  "text": "read \"/Users/macbook/Documents/ChatGPT/Fliegenschwarm/output/THE_FLY_SC_Arbeitskopie/data/FSC_20261026_fly_notches.json\"",
+                  "text": "read",
                   "patching_rect": [
                     1080.0,
                     660.0,
                     650.0,
+                    22.0
+                  ]
+                }
+              },
+              {
+                "box": {
+                  "id": "fsc-preset-path-FSC_20261026_fly_notches",
+                  "maxclass": "newobj",
+                  "text": "js FSC_20261026_preset_path.js FSC_20261026_fly_notches.json",
+                  "numinlets": 1,
+                  "numoutlets": 1,
+                  "outlettype": [
+                    ""
+                  ],
+                  "patching_rect": [
+                    1080.0,
+                    710.0,
+                    560.0,
                     22.0
                   ]
                 }
@@ -4890,7 +4908,7 @@
               {
                 "patchline": {
                   "destination": [
-                    "storage",
+                    "fsc-preset-path-FSC_20261026_fly_notches",
                     0
                   ],
                   "source": [
@@ -4902,7 +4920,7 @@
               {
                 "patchline": {
                   "destination": [
-                    "storage",
+                    "fsc-preset-path-FSC_20261026_fly_notches",
                     0
                   ],
                   "source": [
@@ -5031,6 +5049,18 @@
                 "patchline": {
                   "source": [
                     "fsc-local-read",
+                    0
+                  ],
+                  "destination": [
+                    "fsc-preset-path-FSC_20261026_fly_notches",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "fsc-preset-path-FSC_20261026_fly_notches",
                     0
                   ],
                   "destination": [

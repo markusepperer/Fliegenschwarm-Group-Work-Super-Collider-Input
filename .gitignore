@@ -1,1 +1,7 @@
 backups/THE_FLY_vor_SC_20261026_172924.zip
+
+# Finder metadata and generated recordings
+.DS_Store
+FSC_20261026_.DS_Store
+recordings/*
+!recordings/.gitkeep

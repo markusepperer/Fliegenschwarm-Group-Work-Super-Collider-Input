@@ -1,6 +1,6 @@
 {
   "prefix": "FSC_20261026_",
-  "root": "/Users/macbook/Documents/ChatGPT/Fliegenschwarm/output/THE_FLY_SC_Arbeitskopie",
+  "root": "/Users/macbook/Documents/ChatGPT/Fliegenschwarm/output/THE_FLY_SC_Arbeitskopie/Fliegenschwarm Group Work Super Collider Input",
   "source": "/Users/macbook/Documents/GithubRepos/THE-FLY/20260926 Ausbau_Fliegenschwarm/Fliegen_Bahnen_Panner",
   "original_unchanged": true,
   "original_sha256": {
@@ -873,7 +873,7 @@
   },
   "file_mapping": {
     ".DS_Store": "FSC_20261026_.DS_Store",
-    "Fliegen_Bahnen_Panner.maxproj": "THE_FLY_SC_Arbeitskopie.maxproj",
+    "Fliegen_Bahnen_Panner.maxproj": "Fliegenschwarm Group Work Super Collider Input.maxproj",
     "patchers/MS_Spirale.maxpat": "patchers/FSC_20261026_MS_Spirale.maxpat",
     "patchers/MS_Bewegung_und_Recorder.maxpat": "patchers/FSC_20261026_MS_Bewegung_und_Recorder.maxpat",
     "patchers/MS_fly.maxpat": "patchers/FSC_20261026_MS_fly.maxpat",

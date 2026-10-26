@@ -712,7 +712,7 @@ function validBank(b)
 
 function write()
 {
-    var path = "/Users/macbook/Documents/ChatGPT/Fliegenschwarm/output/THE_FLY_SC_Arbeitskopie/recordings/FSC_20261026_motion_bank.json";
+    var path = fscLocalPath("recordings/FSC_20261026_motion_bank.json");
     var f;
 
     try
@@ -774,7 +774,7 @@ function write()
 
 function read()
 {
-    var path = "/Users/macbook/Documents/ChatGPT/Fliegenschwarm/output/THE_FLY_SC_Arbeitskopie/recordings/FSC_20261026_motion_bank.json";
+    var path = fscLocalPath("recordings/FSC_20261026_motion_bank.json");
     var f;
 
     try
@@ -840,3 +840,12 @@ function notifydeleted()
     clockTask.cancel();
     clockTask.freepeer();
 }
+// Resolve only this uniquely named local script; never use a fixed checkout path.
+function fscCodeFolder(){
+ var f=new File(jsarguments[0],"read");
+ if(!f.isopen)throw new Error("Local FSC script not found: "+jsarguments[0]);
+ var folder=f.foldername;f.close();
+ if(!folder)throw new Error("Local FSC code folder unavailable");
+ return folder.replace(/\/$/,"")+"/";
+}
+function fscLocalPath(relative){return fscCodeFolder()+"../"+relative;}
