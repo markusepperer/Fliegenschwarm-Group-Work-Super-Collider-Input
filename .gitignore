@@ -5,3 +5,6 @@ backups/THE_FLY_vor_SC_20261026_172924.zip
 FSC_20261026_.DS_Store
 recordings/*
 !recordings/.gitkeep
+
+# Max may relocate the original backup archive
+**/THE_FLY_vor_SC_20261026_172924.zip

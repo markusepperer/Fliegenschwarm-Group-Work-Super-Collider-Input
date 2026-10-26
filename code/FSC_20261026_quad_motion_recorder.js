@@ -840,12 +840,16 @@ function notifydeleted()
     clockTask.cancel();
     clockTask.freepeer();
 }
-// Resolve only this uniquely named local script; never use a fixed checkout path.
-function fscCodeFolder(){
- var f=new File(jsarguments[0],"read");
- if(!f.isopen)throw new Error("Local FSC script not found: "+jsarguments[0]);
- var folder=f.foldername;f.close();
- if(!folder)throw new Error("Local FSC code folder unavailable");
- return folder.replace(/\/$/,"")+"/";
+// Use the loaded FSC abstraction path, not Max's script-file search path.
+function fscProjectRoot(){
+ var p=this.patcher;
+ for(var depth=0;p&&depth<64;depth++){
+  var saved=String(p.filepath||"").replace(/\\/g,"/");
+  if(/\/patchers\/FSC_20261026_[^/]+\.maxpat$/.test(saved))
+   return saved.replace(/patchers\/[^/]+$/,"");
+  p=p.parentpatcher;
+ }
+ throw new Error("Saved local FSC abstraction path unavailable");
 }
-function fscLocalPath(relative){return fscCodeFolder()+"../"+relative;}
+function fscCodeFolder(){return fscProjectRoot()+"code/";}
+function fscLocalPath(relative){return fscProjectRoot()+relative;}

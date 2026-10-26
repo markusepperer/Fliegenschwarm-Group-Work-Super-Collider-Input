@@ -304,7 +304,7 @@ function advance(now){
   if(remaining===0)return;
  }
 }
-function start(){if(!ready)init();if(!samples.length||running)return;if(elapsed>=samples[samples.length-1][0]){if(!loadFlight(bounds()[0]))return;}running=true;last=Date.now();emit();status(bridge?'Verbindung':'Laeuft');task.schedule(10);}
+function start(){if(!ready)init();if(running)return;if(!samples.length&&!loadFlight(selected))return;if(elapsed>=samples[samples.length-1][0]){if(!loadFlight(bounds()[0]))return;}running=true;last=Date.now();emit();status(bridge?'Verbindung':'Laeuft');task.schedule(10);}
 function stop(){advance(Date.now());running=false;task.cancel();emit();status('Gestoppt');}
 function restart(){var was=running;if(!loadFlight(bounds()[0]))return;running=was;last=Date.now();emit();status(running?'Laeuft':'Bereit');}
 function speed(v){v=Number(v);if(!isFinite(v))return;advance(Date.now());rate=Math.max(0,Math.min(100,v));sync();emit();}
@@ -312,12 +312,16 @@ function msg_int(v){if(v)start();else stop();}
 function tick(){if(!running)return;advance(Date.now());emit();if(running)task.schedule(10);}
 function notifydeleted(){task.cancel();task.freepeer();}
 
-// Resolve only this uniquely named local script; never use a fixed checkout path.
-function fscCodeFolder(){
- var f=new File(jsarguments[0],"read");
- if(!f.isopen)throw new Error("Local FSC script not found: "+jsarguments[0]);
- var folder=f.foldername;f.close();
- if(!folder)throw new Error("Local FSC code folder unavailable");
- return folder.replace(/\/$/,"")+"/";
+// Use the loaded FSC abstraction path, not Max's script-file search path.
+function fscProjectRoot(){
+ var p=this.patcher;
+ for(var depth=0;p&&depth<64;depth++){
+  var saved=String(p.filepath||"").replace(/\\/g,"/");
+  if(/\/patchers\/FSC_20261026_[^/]+\.maxpat$/.test(saved))
+   return saved.replace(/patchers\/[^/]+$/,"");
+  p=p.parentpatcher;
+ }
+ throw new Error("Saved local FSC abstraction path unavailable");
 }
-function fscLocalPath(relative){return fscCodeFolder()+"../"+relative;}
+function fscCodeFolder(){return fscProjectRoot()+"code/";}
+function fscLocalPath(relative){return fscProjectRoot()+relative;}
