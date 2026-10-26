@@ -1,0 +1,36 @@
+{
+  "files": {
+    "status": "PASS",
+    "checks": [
+      "All 864 original project files unchanged (SHA-256); Finder .DS_Store metadata excluded",
+      "Independent files; no symbolic links or hard links to original",
+      "No project filenames shared with original, including data and media (Finder .DS_Store excluded)",
+      "Outside saved Max 8/9 user search paths",
+      "73 local patcher/code references resolve; nested patch cables intact",
+      "102 named Max objects isolated; #0/#1 at start for Max substitution; file controls local",
+      "Project contains only local components; autolocalize disabled",
+      "All 790 flight data files byte-for-byte preserved",
+      "All JavaScript global state names isolated; no original paths"
+    ],
+    "reference_count": 73,
+    "bus_count": 102,
+    "runtime_max_test": false
+  },
+  "code": {
+    "status": "PASS",
+    "syntax_checked": 18,
+    "flight_loads": 742,
+    "arbitrary_recorder_paths_redirected": 3,
+    "global_names_checked": 24,
+    "named_messages_checked": 5,
+    "poly_instances_with_distinct_buses": 50,
+    "mono_and_xy_links_checked": 100,
+    "recording_instance_path_checked": true,
+    "real_files_written": 0,
+    "max_runtime": false
+  },
+  "max_load_test": {
+    "status": "USER_REPORTED_FAILURE_BEFORE_FIX",
+    "reason": "Fixed misplaced #0/#1 prefixes after user reported stalled UI and no flies. Corrected version not yet verified in running Max."
+  }
+}

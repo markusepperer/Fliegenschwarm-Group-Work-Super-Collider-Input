@@ -1,0 +1,33 @@
+{
+  "pattrstorage": {
+    "name": "FSC_20261026_1228_fly_notches",
+    "slots": {
+      "1": {
+        "id": 1,
+        "data": {
+          "harmonic2_gain": [
+            -6.17
+          ],
+          "harmonic2_q": [
+            4.0
+          ],
+          "harmonic3_gain": [
+            -6.0
+          ],
+          "harmonic3_q": [
+            4.0
+          ],
+          "harmonic_instability_depth": [
+            6.0
+          ],
+          "harmonic_instability_on": [
+            1
+          ],
+          "harmonic_instability_rate": [
+            180
+          ]
+        }
+      }
+    }
+  }
+}

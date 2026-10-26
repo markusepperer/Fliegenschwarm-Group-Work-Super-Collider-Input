@@ -1,0 +1,4 @@
+Diese Dateien sind Sicherungen, keine ladbaren Max-Abstraktionen.
+Zur gezielten Wiederherstellung eine Datei kopieren und nur an der Kopie die Endung .backup entfernen.
+Die Sicherungsdateien selbst behalten ihre Endung .backup.
+Originalpfade und Prüfsummen stehen in Sicherungsmanifest.json.

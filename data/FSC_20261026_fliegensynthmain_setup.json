@@ -1,0 +1,531 @@
+{
+  "pattrstorage": {
+    "name": "FSC_20261026_fliegen_setup",
+    "slots": {
+      "1": {
+        "id": 1,
+        "data": {
+          "fly_1_master": [
+            0.67
+          ],
+          "fly_2_master": [
+            0.5
+          ],
+          "fly_3_master": [
+            0.9802
+          ],
+          "fly_4_master": [
+            0.85
+          ],
+          "fly_matrix": [
+            0,
+            0,
+            1.0,
+            1,
+            1,
+            1.0,
+            2,
+            2,
+            1.0,
+            3,
+            3,
+            1.0
+          ],
+          "main_output_gain": [
+            -22.90776735136321
+          ],
+          "fly_1::center_boost_db": [
+            0.0
+          ],
+          "fly_1::expand": [
+            100.0
+          ],
+          "fly_1::rotate": [
+            0.0
+          ],
+          "fly_1::shake": [
+            0.0
+          ],
+          "fly_1::shift_x": [
+            0.0
+          ],
+          "fly_1::shift_y": [
+            0.0
+          ],
+          "fly_1::smoothing_ms": [
+            30.0
+          ],
+          "fly_1::spread": [
+            100.0
+          ],
+          "fly_1::trajectory_module::bio_trajectory::flight_number": [
+            1
+          ],
+          "fly_1::trajectory_module::bio_trajectory::loop_enabled": [
+            1
+          ],
+          "fly_1::trajectory_module::bio_trajectory::range_first": [
+            1
+          ],
+          "fly_1::trajectory_module::bio_trajectory::range_last": [
+            10
+          ],
+          "fly_1::trajectory_module::bio_trajectory::selection_mode": [
+            1
+          ],
+          "fly_1::trajectory_module::bio_trajectory::tempo": [
+            1.0
+          ],
+          "fly_2::center_boost_db": [
+            0.0
+          ],
+          "fly_2::expand": [
+            100.0
+          ],
+          "fly_2::rotate": [
+            0.0
+          ],
+          "fly_2::shake": [
+            0.0
+          ],
+          "fly_2::shift_x": [
+            0.0
+          ],
+          "fly_2::shift_y": [
+            0.0
+          ],
+          "fly_2::smoothing_ms": [
+            30.0
+          ],
+          "fly_2::spread": [
+            100.0
+          ],
+          "fly_2::trajectory_module::bio_trajectory::flight_number": [
+            300
+          ],
+          "fly_2::trajectory_module::bio_trajectory::loop_enabled": [
+            1
+          ],
+          "fly_2::trajectory_module::bio_trajectory::range_first": [
+            300
+          ],
+          "fly_2::trajectory_module::bio_trajectory::range_last": [
+            400
+          ],
+          "fly_2::trajectory_module::bio_trajectory::selection_mode": [
+            1
+          ],
+          "fly_2::trajectory_module::bio_trajectory::tempo": [
+            3.0
+          ],
+          "fly_3::center_boost_db": [
+            0.0
+          ],
+          "fly_3::expand": [
+            100.0
+          ],
+          "fly_3::rotate": [
+            0.0
+          ],
+          "fly_3::shake": [
+            0.0
+          ],
+          "fly_3::shift_x": [
+            0.0
+          ],
+          "fly_3::shift_y": [
+            0.0
+          ],
+          "fly_3::smoothing_ms": [
+            30.0
+          ],
+          "fly_3::spread": [
+            100.0
+          ],
+          "fly_3::trajectory_module::bio_trajectory::flight_number": [
+            100
+          ],
+          "fly_3::trajectory_module::bio_trajectory::loop_enabled": [
+            1
+          ],
+          "fly_3::trajectory_module::bio_trajectory::range_first": [
+            100
+          ],
+          "fly_3::trajectory_module::bio_trajectory::range_last": [
+            200
+          ],
+          "fly_3::trajectory_module::bio_trajectory::selection_mode": [
+            1
+          ],
+          "fly_3::trajectory_module::bio_trajectory::tempo": [
+            2.0
+          ],
+          "fly_4::center_boost_db": [
+            0.0
+          ],
+          "fly_4::expand": [
+            100.0
+          ],
+          "fly_4::rotate": [
+            0.0
+          ],
+          "fly_4::shake": [
+            0.0
+          ],
+          "fly_4::shift_x": [
+            0.0
+          ],
+          "fly_4::shift_y": [
+            0.0
+          ],
+          "fly_4::smoothing_ms": [
+            30.0
+          ],
+          "fly_4::spread": [
+            100.0
+          ],
+          "fly_4::trajectory_module::bio_trajectory::flight_number": [
+            400
+          ],
+          "fly_4::trajectory_module::bio_trajectory::loop_enabled": [
+            1
+          ],
+          "fly_4::trajectory_module::bio_trajectory::range_first": [
+            400
+          ],
+          "fly_4::trajectory_module::bio_trajectory::range_last": [
+            500
+          ],
+          "fly_4::trajectory_module::bio_trajectory::selection_mode": [
+            1
+          ],
+          "fly_4::trajectory_module::bio_trajectory::tempo": [
+            0.7
+          ],
+          "MS_fly[3]::patcher::2327_fly_notches": [
+            -1
+          ],
+          "MS_fly[3]::patcher::harmonic2_gain": [
+            -6.17
+          ],
+          "MS_fly[3]::patcher::harmonic2_q": [
+            4.0
+          ],
+          "MS_fly[3]::patcher::harmonic3_gain": [
+            -6.0
+          ],
+          "MS_fly[3]::patcher::harmonic3_q": [
+            4.0
+          ],
+          "MS_fly[2]::patcher::2323_fly_notches": [
+            -1
+          ],
+          "MS_fly[2]::patcher::harmonic2_gain": [
+            -6.17
+          ],
+          "MS_fly[2]::patcher::harmonic2_q": [
+            4.0
+          ],
+          "MS_fly[2]::patcher::harmonic3_gain": [
+            -6.0
+          ],
+          "MS_fly[2]::patcher::harmonic3_q": [
+            4.0
+          ],
+          "MS_fly[1]::patcher::2319_fly_notches": [
+            -1
+          ],
+          "MS_fly[1]::patcher::harmonic2_gain": [
+            -6.17
+          ],
+          "MS_fly[1]::patcher::harmonic2_q": [
+            4.0
+          ],
+          "MS_fly[1]::patcher::harmonic3_gain": [
+            -6.0
+          ],
+          "MS_fly[1]::patcher::harmonic3_q": [
+            4.0
+          ],
+          "MS_fly::patcher::2315_fly_notches": [
+            -1
+          ],
+          "MS_fly::patcher::harmonic2_gain": [
+            -6.17
+          ],
+          "MS_fly::patcher::harmonic2_q": [
+            4.0
+          ],
+          "MS_fly::patcher::harmonic3_gain": [
+            -6.0
+          ],
+          "MS_fly::patcher::harmonic3_q": [
+            4.0
+          ]
+        }
+      },
+      "2": {
+        "id": 2,
+        "data": {
+          "fly_1_master": [
+            0.67
+          ],
+          "fly_2_master": [
+            0.5
+          ],
+          "fly_3_master": [
+            0.9802
+          ],
+          "fly_4_master": [
+            0.85
+          ],
+          "fly_matrix": [
+            0,
+            0,
+            1.0,
+            1,
+            1,
+            1.0,
+            2,
+            2,
+            1.0,
+            3,
+            3,
+            1.0
+          ],
+          "main_output_gain": [
+            -22.90776735136321
+          ],
+          "fly_1::center_boost_db": [
+            0.0
+          ],
+          "fly_1::expand": [
+            77.0
+          ],
+          "fly_1::rotate": [
+            0.0
+          ],
+          "fly_1::shake": [
+            0.0
+          ],
+          "fly_1::shift_x": [
+            0.0
+          ],
+          "fly_1::shift_y": [
+            0.0
+          ],
+          "fly_1::smoothing_ms": [
+            30.0
+          ],
+          "fly_1::spread": [
+            100.0
+          ],
+          "fly_1::trajectory_module::bio_trajectory::flight_number": [
+            1
+          ],
+          "fly_1::trajectory_module::bio_trajectory::loop_enabled": [
+            1
+          ],
+          "fly_1::trajectory_module::bio_trajectory::range_first": [
+            1
+          ],
+          "fly_1::trajectory_module::bio_trajectory::range_last": [
+            10
+          ],
+          "fly_1::trajectory_module::bio_trajectory::selection_mode": [
+            1
+          ],
+          "fly_1::trajectory_module::bio_trajectory::tempo": [
+            1.0
+          ],
+          "fly_2::center_boost_db": [
+            0.0
+          ],
+          "fly_2::expand": [
+            77.0
+          ],
+          "fly_2::rotate": [
+            0.0
+          ],
+          "fly_2::shake": [
+            0.0
+          ],
+          "fly_2::shift_x": [
+            0.0
+          ],
+          "fly_2::shift_y": [
+            0.0
+          ],
+          "fly_2::smoothing_ms": [
+            30.0
+          ],
+          "fly_2::spread": [
+            100.0
+          ],
+          "fly_2::trajectory_module::bio_trajectory::flight_number": [
+            300
+          ],
+          "fly_2::trajectory_module::bio_trajectory::loop_enabled": [
+            1
+          ],
+          "fly_2::trajectory_module::bio_trajectory::range_first": [
+            300
+          ],
+          "fly_2::trajectory_module::bio_trajectory::range_last": [
+            400
+          ],
+          "fly_2::trajectory_module::bio_trajectory::selection_mode": [
+            1
+          ],
+          "fly_2::trajectory_module::bio_trajectory::tempo": [
+            3.0
+          ],
+          "fly_3::center_boost_db": [
+            0.0
+          ],
+          "fly_3::expand": [
+            76.0
+          ],
+          "fly_3::rotate": [
+            0.0
+          ],
+          "fly_3::shake": [
+            0.0
+          ],
+          "fly_3::shift_x": [
+            0.0
+          ],
+          "fly_3::shift_y": [
+            0.0
+          ],
+          "fly_3::smoothing_ms": [
+            30.0
+          ],
+          "fly_3::spread": [
+            100.0
+          ],
+          "fly_3::trajectory_module::bio_trajectory::flight_number": [
+            100
+          ],
+          "fly_3::trajectory_module::bio_trajectory::loop_enabled": [
+            1
+          ],
+          "fly_3::trajectory_module::bio_trajectory::range_first": [
+            100
+          ],
+          "fly_3::trajectory_module::bio_trajectory::range_last": [
+            200
+          ],
+          "fly_3::trajectory_module::bio_trajectory::selection_mode": [
+            1
+          ],
+          "fly_3::trajectory_module::bio_trajectory::tempo": [
+            2.0
+          ],
+          "fly_4::center_boost_db": [
+            0.0
+          ],
+          "fly_4::expand": [
+            72.0
+          ],
+          "fly_4::rotate": [
+            0.0
+          ],
+          "fly_4::shake": [
+            0.0
+          ],
+          "fly_4::shift_x": [
+            0.0
+          ],
+          "fly_4::shift_y": [
+            0.0
+          ],
+          "fly_4::smoothing_ms": [
+            30.0
+          ],
+          "fly_4::spread": [
+            100.0
+          ],
+          "fly_4::trajectory_module::bio_trajectory::flight_number": [
+            400
+          ],
+          "fly_4::trajectory_module::bio_trajectory::loop_enabled": [
+            1
+          ],
+          "fly_4::trajectory_module::bio_trajectory::range_first": [
+            400
+          ],
+          "fly_4::trajectory_module::bio_trajectory::range_last": [
+            500
+          ],
+          "fly_4::trajectory_module::bio_trajectory::selection_mode": [
+            1
+          ],
+          "fly_4::trajectory_module::bio_trajectory::tempo": [
+            0.7
+          ],
+          "MS_fly[3]::patcher::2327_fly_notches": [
+            -1
+          ],
+          "MS_fly[3]::patcher::harmonic2_gain": [
+            -6.17
+          ],
+          "MS_fly[3]::patcher::harmonic2_q": [
+            4.0
+          ],
+          "MS_fly[3]::patcher::harmonic3_gain": [
+            -6.0
+          ],
+          "MS_fly[3]::patcher::harmonic3_q": [
+            4.0
+          ],
+          "MS_fly[2]::patcher::2323_fly_notches": [
+            -1
+          ],
+          "MS_fly[2]::patcher::harmonic2_gain": [
+            -6.17
+          ],
+          "MS_fly[2]::patcher::harmonic2_q": [
+            4.0
+          ],
+          "MS_fly[2]::patcher::harmonic3_gain": [
+            -6.0
+          ],
+          "MS_fly[2]::patcher::harmonic3_q": [
+            4.0
+          ],
+          "MS_fly[1]::patcher::2319_fly_notches": [
+            -1
+          ],
+          "MS_fly[1]::patcher::harmonic2_gain": [
+            -6.17
+          ],
+          "MS_fly[1]::patcher::harmonic2_q": [
+            4.0
+          ],
+          "MS_fly[1]::patcher::harmonic3_gain": [
+            -6.0
+          ],
+          "MS_fly[1]::patcher::harmonic3_q": [
+            4.0
+          ],
+          "MS_fly::patcher::2315_fly_notches": [
+            -1
+          ],
+          "MS_fly::patcher::harmonic2_gain": [
+            -6.17
+          ],
+          "MS_fly::patcher::harmonic2_q": [
+            4.0
+          ],
+          "MS_fly::patcher::harmonic3_gain": [
+            -6.0
+          ],
+          "MS_fly::patcher::harmonic3_q": [
+            4.0
+          ]
+        }
+      }
+    }
+  }
+}
