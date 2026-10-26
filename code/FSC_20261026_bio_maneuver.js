@@ -46,8 +46,8 @@ function processxy(a){
  var x=Number(a[0]),y=Number(a[1]);
  if(!isFinite(x)||!isFinite(y))return;
  var now=Date.now();
- // Fruit fly only. Mosquito and synthetic bridge are forced to zero.
- if(species!==0||!measured||!(scalePerM>0)){
+ // Measured fruit fly or live SC. Mosquito and synthetic bridges remain zero.
+ if((species!==0&&species!==2)||!measured||!(scalePerM>0)){
   resetstate();zeros();return;
  }
  if(rebasePending){prevX=x;prevY=y;prevWallMs=now;havePos=true;rebasePending=false;return;}
@@ -64,8 +64,8 @@ function processxy(a){
  if(dt>0.25){
   prevX=x;prevY=y;prevWallMs=now;haveVel=false;prevVx=prevVy=prevSpeed=prevDt=0;zeros();return;
  }
- var dxm=(x-prevX)/scalePerM;
- var dym=(y-prevY)/scalePerM;
+ var dxm=(x-prevX)*(species===2?1.40:1/scalePerM);
+ var dym=(y-prevY)*(species===2?2.00:1/scalePerM);
  var vx=dxm/dt,vy=dym/dt;
  var speed=Math.sqrt(vx*vx+vy*vy);
  var turnIntensity=0,accel=0,accelIntensity=0;

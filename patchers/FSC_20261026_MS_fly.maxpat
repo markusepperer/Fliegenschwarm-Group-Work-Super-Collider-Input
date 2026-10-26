@@ -14094,6 +14094,21 @@
                   ],
                   "text": "Pivot ca. 300 Hz · bei Amount 1 je Zweig ±3 dB · 80 ms Glättung. Stillstand hält die Orientierung; nahe der Mitte bei Bewegung neutral."
                 }
+              },
+              {
+                "box": {
+                  "id": "sc-reset",
+                  "maxclass": "newobj",
+                  "text": "r #1FSC_20261026_analysis_reset",
+                  "numinlets": 1,
+                  "numoutlets": 1,
+                  "patching_rect": [
+                    20,
+                    400,
+                    186,
+                    22
+                  ]
+                }
               }
             ],
             "lines": [
@@ -14365,6 +14380,18 @@
                   ],
                   "source": [
                     "xyrecv",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "sc-reset",
+                    0
+                  ],
+                  "destination": [
+                    "engine",
                     0
                   ]
                 }
@@ -14706,6 +14733,36 @@
                   ],
                   "text": "*~"
                 }
+              },
+              {
+                "box": {
+                  "id": "sc-reset",
+                  "maxclass": "newobj",
+                  "text": "r #1FSC_20261026_analysis_reset",
+                  "numinlets": 1,
+                  "numoutlets": 1,
+                  "patching_rect": [
+                    20,
+                    400,
+                    186,
+                    22
+                  ]
+                }
+              },
+              {
+                "box": {
+                  "id": "sc-rebase",
+                  "maxclass": "message",
+                  "text": "rebase",
+                  "numinlets": 2,
+                  "numoutlets": 1,
+                  "patching_rect": [
+                    20,
+                    430,
+                    70,
+                    22
+                  ]
+                }
               }
             ],
             "lines": [
@@ -14828,6 +14885,30 @@
                     0
                   ]
                 }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "sc-reset",
+                    0
+                  ],
+                  "destination": [
+                    "sc-rebase",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "sc-rebase",
+                    0
+                  ],
+                  "destination": [
+                    "dop-js",
+                    0
+                  ]
+                }
               }
             ]
           },
@@ -14856,6 +14937,81 @@
             22.0
           ],
           "text": "FSC_20261026_MS_Distance_Air_Filter #1"
+        }
+      },
+      {
+        "box": {
+          "id": "sc-history-reset",
+          "maxclass": "newobj",
+          "text": "r #1FSC_20261026_analysis_reset",
+          "numinlets": 1,
+          "numoutlets": 1,
+          "patching_rect": [
+            20,
+            1600,
+            186,
+            22
+          ]
+        }
+      },
+      {
+        "box": {
+          "id": "sc-xy-history",
+          "maxclass": "newobj",
+          "text": "js FSC_20261026_xy_history.js",
+          "numinlets": 2,
+          "numoutlets": 3,
+          "patching_rect": [
+            20,
+            1640,
+            174,
+            22
+          ]
+        }
+      },
+      {
+        "box": {
+          "id": "sc-speed-gate",
+          "maxclass": "newobj",
+          "text": "gate 1 1",
+          "numinlets": 2,
+          "numoutlets": 1,
+          "patching_rect": [
+            20,
+            1680,
+            70,
+            22
+          ]
+        }
+      },
+      {
+        "box": {
+          "id": "sc-turn-gate",
+          "maxclass": "newobj",
+          "text": "gate 1 1",
+          "numinlets": 2,
+          "numoutlets": 1,
+          "patching_rect": [
+            130,
+            1680,
+            70,
+            22
+          ]
+        }
+      },
+      {
+        "box": {
+          "id": "sc-turnsigned-gate",
+          "maxclass": "newobj",
+          "text": "gate 1 1",
+          "numinlets": 2,
+          "numoutlets": 1,
+          "patching_rect": [
+            240,
+            1680,
+            70,
+            22
+          ]
         }
       }
     ],
@@ -15451,7 +15607,7 @@
             0
           ],
           "source": [
-            "obj-21",
+            "sc-speed-gate",
             0
           ]
         }
@@ -15463,19 +15619,6 @@
             0
           ],
           "order": 0,
-          "source": [
-            "obj-22",
-            0
-          ]
-        }
-      },
-      {
-        "patchline": {
-          "destination": [
-            "obj-21",
-            0
-          ],
-          "order": 2,
           "source": [
             "obj-22",
             0
@@ -15498,25 +15641,12 @@
       {
         "patchline": {
           "destination": [
-            "obj-24",
-            0
-          ],
-          "order": 1,
-          "source": [
-            "obj-22",
-            0
-          ]
-        }
-      },
-      {
-        "patchline": {
-          "destination": [
             "obj-19",
             0
           ],
           "order": 0,
           "source": [
-            "obj-24",
+            "sc-turnsigned-gate",
             0
           ]
         }
@@ -15528,8 +15658,8 @@
             0
           ],
           "source": [
-            "obj-24",
-            1
+            "sc-turn-gate",
+            0
           ]
         }
       },
@@ -15541,7 +15671,7 @@
           ],
           "order": 1,
           "source": [
-            "obj-24",
+            "sc-turnsigned-gate",
             0
           ]
         }
@@ -16374,6 +16504,180 @@
           ],
           "source": [
             "wing2",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "obj-22",
+            0
+          ],
+          "destination": [
+            "sc-xy-history",
+            0
+          ],
+          "order": 4
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "sc-history-reset",
+            0
+          ],
+          "destination": [
+            "sc-xy-history",
+            1
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "sc-xy-history",
+            0
+          ],
+          "destination": [
+            "obj-21",
+            0
+          ],
+          "order": 0
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "sc-xy-history",
+            0
+          ],
+          "destination": [
+            "obj-24",
+            0
+          ],
+          "order": 1
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "sc-xy-history",
+            1
+          ],
+          "destination": [
+            "sc-speed-gate",
+            0
+          ],
+          "order": 0
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "sc-xy-history",
+            1
+          ],
+          "destination": [
+            "sc-turn-gate",
+            0
+          ],
+          "order": 1
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "sc-xy-history",
+            1
+          ],
+          "destination": [
+            "sc-turnsigned-gate",
+            0
+          ],
+          "order": 2
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "obj-21",
+            0
+          ],
+          "destination": [
+            "sc-speed-gate",
+            1
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "obj-24",
+            1
+          ],
+          "destination": [
+            "sc-turn-gate",
+            1
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "obj-24",
+            0
+          ],
+          "destination": [
+            "sc-turnsigned-gate",
+            1
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "sc-xy-history",
+            2
+          ],
+          "destination": [
+            "obj-3",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "sc-xy-history",
+            2
+          ],
+          "destination": [
+            "obj-19",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "sc-xy-history",
+            2
+          ],
+          "destination": [
+            "obj-25",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "sc-xy-history",
+            2
+          ],
+          "destination": [
+            "turn-signed-send-1",
             0
           ]
         }

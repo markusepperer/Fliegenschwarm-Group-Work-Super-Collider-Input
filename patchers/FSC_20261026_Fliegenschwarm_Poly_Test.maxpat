@@ -3445,7 +3445,7 @@
           "id": "voicecount-js",
           "maxclass": "newobj",
           "numinlets": 2,
-          "numoutlets": 3,
+          "numoutlets": 4,
           "outlettype": [
             "",
             "",
@@ -3704,6 +3704,143 @@
             22.0
           ],
           "text": "r FSC_20261026_3922_swarm_manager_commands"
+        }
+      },
+      {
+        "box": {
+          "id": "sc-source-button",
+          "maxclass": "textbutton",
+          "text": "Intern",
+          "numinlets": 1,
+          "numoutlets": 3,
+          "patching_rect": [
+            20,
+            1080,
+            70,
+            22
+          ],
+          "mode": 1,
+          "texton": "SuperCollider",
+          "parameter_enable": 0,
+          "presentation": 1,
+          "presentation_rect": [
+            372.0,
+            4.0,
+            240.0,
+            24.0
+          ],
+          "varname": "FSC_20261026_position_source",
+          "annotation": "Intern: vorhandene Steuerung. SuperCollider: /fly ID X Y auf UDP 9000; feste Kreis-Grundstellung.",
+          "outlettype": [
+            "",
+            "",
+            "int"
+          ]
+        }
+      },
+      {
+        "box": {
+          "id": "sc-source-pre",
+          "maxclass": "newobj",
+          "text": "prepend external",
+          "numinlets": 1,
+          "numoutlets": 1,
+          "patching_rect": [
+            20,
+            1120,
+            96,
+            22
+          ]
+        }
+      },
+      {
+        "box": {
+          "id": "sc-udp-active",
+          "maxclass": "newobj",
+          "text": "prepend active",
+          "numinlets": 1,
+          "numoutlets": 1,
+          "patching_rect": [
+            190,
+            1120,
+            84,
+            22
+          ]
+        }
+      },
+      {
+        "box": {
+          "id": "sc-udp",
+          "maxclass": "newobj",
+          "text": "udpreceive 9000 @active 0 @defer 1",
+          "numinlets": 1,
+          "numoutlets": 1,
+          "patching_rect": [
+            20,
+            1170,
+            204,
+            22
+          ]
+        }
+      },
+      {
+        "box": {
+          "id": "sc-route",
+          "maxclass": "newobj",
+          "text": "route /fly",
+          "numinlets": 1,
+          "numoutlets": 2,
+          "patching_rect": [
+            20,
+            1200,
+            70,
+            22
+          ]
+        }
+      },
+      {
+        "box": {
+          "id": "sc-fly-pre",
+          "maxclass": "newobj",
+          "text": "prepend fly",
+          "numinlets": 1,
+          "numoutlets": 1,
+          "patching_rect": [
+            20,
+            1230,
+            70,
+            22
+          ]
+        }
+      },
+      {
+        "box": {
+          "id": "sc-router",
+          "maxclass": "newobj",
+          "text": "js FSC_20261026_external_swarm.js",
+          "numinlets": 1,
+          "numoutlets": 0,
+          "patching_rect": [
+            20,
+            1270,
+            198,
+            22
+          ]
+        }
+      },
+      {
+        "box": {
+          "id": "sc-register",
+          "maxclass": "newobj",
+          "text": "r FSC_20261026_external_registry",
+          "numinlets": 1,
+          "numoutlets": 1,
+          "patching_rect": [
+            380,
+            1230,
+            192,
+            22
+          ]
         }
       }
     ],
@@ -5057,6 +5194,116 @@
           "source": [
             "voicecount-js",
             2
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "sc-source-button",
+            0
+          ],
+          "destination": [
+            "sc-source-pre",
+            0
+          ],
+          "order": 0
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "sc-source-button",
+            0
+          ],
+          "destination": [
+            "sc-udp-active",
+            0
+          ],
+          "order": 1
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "sc-source-pre",
+            0
+          ],
+          "destination": [
+            "voicecount-js",
+            1
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "sc-udp-active",
+            0
+          ],
+          "destination": [
+            "sc-udp",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "sc-udp",
+            0
+          ],
+          "destination": [
+            "sc-route",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "sc-route",
+            0
+          ],
+          "destination": [
+            "sc-fly-pre",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "sc-fly-pre",
+            0
+          ],
+          "destination": [
+            "sc-router",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "voicecount-js",
+            3
+          ],
+          "destination": [
+            "sc-router",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "sc-register",
+            0
+          ],
+          "destination": [
+            "sc-router",
+            0
           ]
         }
       }

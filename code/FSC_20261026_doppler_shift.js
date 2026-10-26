@@ -67,4 +67,5 @@ function reset() {
     previousX = previousY = 0.5; lastCosine = 0.0; emit();
 }
 
+function rebase() { speed=0; havePosition=false; lastCosine=0; emit(); }
 function loadbang() { reset(); }

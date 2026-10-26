@@ -271,6 +271,18 @@
       "FSC_20261026_preset_path.js": {
         "kind": "javascript",
         "local": 1
+      },
+      "FSC_20261026_external_swarm.js": {
+        "kind": "javascript",
+        "local": 1
+      },
+      "FSC_20261026_position_source.js": {
+        "kind": "javascript",
+        "local": 1
+      },
+      "FSC_20261026_xy_history.js": {
+        "kind": "javascript",
+        "local": 1
       }
     },
     "data": {}

@@ -20,6 +20,7 @@ function reset() {
     outlet(1, 0.0);
     outlet(0, 0.5);
 }
+function rebase() { havePosition=false; }
 function processxy(x, y) {
     x = Number(x); y = Number(y);
     if (!isFinite(x) || !isFinite(y)) return;

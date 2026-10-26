@@ -1,7 +1,8 @@
 autowatch = 1;
 inlets = 2;
-outlets = 3;
+outlets = 4;
 
+var externalMode = 0;
 var current = 0;
 var selectedTarget = 0;
 var maximum = 50;
@@ -181,7 +182,10 @@ function deliverNext() {
     deliveryTask.schedule(5);
 }
 
-function reportMoving() { outlet(1, "set", movingCount); }
+function reportExternalState() {
+    outlet(3,"state",initialized?current:pendingInitialCount,movingCount,swarmRunning?1:0);
+}
+function reportMoving() { outlet(1, "set", movingCount); reportExternalState(); }
 
 function applyMovement() {
     // A movement edit may interrupt an unfinished activation queue. Rebuild
@@ -232,6 +236,7 @@ function setCount(v) {
 
     if (!initialized) {
         pendingInitialCount = v;
+        reportExternalState();
         initializationTask.cancel();
         initializationTask.schedule(250);
         return;
@@ -272,14 +277,14 @@ function setCount(v) {
                 {name:"escapereturngroup",args:[1,escapeReturns[1]]},{name:"escapereturngroup",args:[2,escapeReturns[2]]},{name:"escapereturngroup",args:[3,escapeReturns[3]]},{name:"escapereturngroup",args:[4,escapeReturns[4]]},
                 {name:"gain",args:[0]},{name:"portalmode",args:[portalMode]},{name:"portalx",args:[portalX]},{name:"portaly",args:[portalY]},{name:"portaldirection",args:[portalDirection]},{name:"portalwidth",args:[portalWidth]},{name:"portalspeed",args:[portalSpeed]},{name:"portaldeviation",args:[portalDeviation]},{name:"portalorigin",args:[1]},{name:"active",args:[1]},{name:"gain",args:[1]}
             ].concat(voiceFlightSettings[voice] || [], [
-                {name:(swarmRunning && voice <= movingCount) ? "start" : "stop", args:[]}
+                {name:(!externalMode && swarmRunning && voice <= movingCount) ? "start" : "stop", args:[]}
             ])});
         } else if (shouldBeActive) {
             // A changed swarm size gives every remaining voice a new, centered grid slot.
             var existingCommands = [
                 {name:"gridvoices", args:[current]}, {name:"swarms", args:[swarmCount]}
             ];
-            var shouldMove = swarmRunning && voice <= movingCount;
+            var shouldMove = !externalMode && swarmRunning && voice <= movingCount;
             existingCommands.push({name:shouldMove ? "start" : "stop", args:[]});
             activationEntries.push({voice:voice, commands:existingCommands});
         } else {
@@ -302,6 +307,14 @@ function anything() {
 
     if (inlet === 0) {
         if (messagename === "count" && args.length) setCount(args[0]);
+        return;
+    }
+
+    if (messagename === "external" && args.length) {
+        externalMode = Number(args[0]) ? 1 : 0;
+        outlet(3,"source",externalMode);
+        reportExternalState();
+        applyMovement();
         return;
     }
 
@@ -333,13 +346,15 @@ function anything() {
         // Moving is itself the motion control: values above zero run that many
         // voices, zero stops the whole active swarm.
         swarmRunning = movingCount > 0;
+        reportExternalState();
         applyMovement(); return;
     }
     if (messagename === "start" && selectedTarget === 0) {
-        swarmRunning=true; applyMovement(); return;
+        swarmRunning=true; reportExternalState(); applyMovement(); return;
     }
     if (messagename === "stop" && selectedTarget === 0) {
         swarmRunning=false;
+        reportExternalState();
         applyMovement(); return;
     }
 

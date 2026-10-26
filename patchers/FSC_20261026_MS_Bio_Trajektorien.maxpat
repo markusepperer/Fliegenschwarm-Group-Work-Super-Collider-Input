@@ -1378,6 +1378,51 @@
           ],
           "text": "Schwarmebene: Rohbahn → Schwarmbewegung. Outlet 1: Raum-XY für Panning/Anzeige und XY-Mappings. Outlet 2: Analyse-XY für Manöver."
         }
+      },
+      {
+        "box": {
+          "id": "sc-source",
+          "maxclass": "newobj",
+          "text": "js FSC_20261026_position_source.js #1",
+          "numinlets": 5,
+          "numoutlets": 5,
+          "patching_rect": [
+            20,
+            850,
+            222,
+            22
+          ]
+        }
+      },
+      {
+        "box": {
+          "id": "sc-position-recv",
+          "maxclass": "newobj",
+          "text": "r #1FSC_20261026_external_position",
+          "numinlets": 1,
+          "numoutlets": 1,
+          "patching_rect": [
+            20,
+            810,
+            204,
+            22
+          ]
+        }
+      },
+      {
+        "box": {
+          "id": "sc-history-reset",
+          "maxclass": "newobj",
+          "text": "s #1FSC_20261026_analysis_reset",
+          "numinlets": 1,
+          "numoutlets": 0,
+          "patching_rect": [
+            300,
+            900,
+            186,
+            22
+          ]
+        }
       }
     ],
     "lines": [
@@ -1425,84 +1470,6 @@
           ],
           "source": [
             "init",
-            0
-          ]
-        }
-      },
-      {
-        "patchline": {
-          "destination": [
-            "maneuver_js",
-            1
-          ],
-          "order": 1,
-          "source": [
-            "js",
-            3
-          ]
-        }
-      },
-      {
-        "patchline": {
-          "destination": [
-            "maneuver_js",
-            0
-          ],
-          "order": 0,
-          "source": [
-            "swarm-attractor",
-            1
-          ]
-        }
-      },
-      {
-        "patchline": {
-          "destination": [
-            "maneuver_meta_send",
-            0
-          ],
-          "order": 0,
-          "source": [
-            "js",
-            3
-          ]
-        }
-      },
-      {
-        "patchline": {
-          "destination": [
-            "obj-2",
-            1
-          ],
-          "order": 1,
-          "source": [
-            "swarm-attractor",
-            0
-          ]
-        }
-      },
-      {
-        "patchline": {
-          "destination": [
-            "obj-3",
-            0
-          ],
-          "order": 2,
-          "source": [
-            "swarm-attractor",
-            0
-          ]
-        }
-      },
-      {
-        "patchline": {
-          "destination": [
-            "out",
-            0
-          ],
-          "order": 3,
-          "source": [
-            "swarm-attractor",
             0
           ]
         }
@@ -2017,18 +1984,6 @@
       {
         "patchline": {
           "source": [
-            "in",
-            0
-          ],
-          "destination": [
-            "stop-reset-route",
-            0
-          ]
-        }
-      },
-      {
-        "patchline": {
-          "source": [
             "stop-reset-route",
             0
           ],
@@ -2046,18 +2001,6 @@
           ],
           "destination": [
             "maneuver_js",
-            0
-          ]
-        }
-      },
-      {
-        "patchline": {
-          "source": [
-            "in",
-            0
-          ],
-          "destination": [
-            "swarm-route",
             0
           ]
         }
@@ -2425,18 +2368,6 @@
       {
         "patchline": {
           "source": [
-            "swarm-attractor",
-            2
-          ],
-          "destination": [
-            "maneuver_js",
-            0
-          ]
-        }
-      },
-      {
-        "patchline": {
-          "source": [
             "swarm-route",
             29
           ],
@@ -2768,6 +2699,207 @@
             "swarm-attractor",
             56
           ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "in",
+            0
+          ],
+          "destination": [
+            "sc-source",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "sc-position-recv",
+            0
+          ],
+          "destination": [
+            "sc-source",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "sc-source",
+            3
+          ],
+          "destination": [
+            "swarm-route",
+            0
+          ],
+          "order": 1
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "sc-source",
+            3
+          ],
+          "destination": [
+            "stop-reset-route",
+            0
+          ],
+          "order": 0
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "swarm-attractor",
+            0
+          ],
+          "destination": [
+            "sc-source",
+            1
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "swarm-attractor",
+            1
+          ],
+          "destination": [
+            "sc-source",
+            2
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "swarm-attractor",
+            2
+          ],
+          "destination": [
+            "sc-source",
+            4
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "js",
+            3
+          ],
+          "destination": [
+            "sc-source",
+            3
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "sc-source",
+            0
+          ],
+          "destination": [
+            "obj-2",
+            1
+          ],
+          "order": 1
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "sc-source",
+            0
+          ],
+          "destination": [
+            "obj-3",
+            0
+          ],
+          "order": 2
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "sc-source",
+            0
+          ],
+          "destination": [
+            "out",
+            0
+          ],
+          "order": 3
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "sc-source",
+            1
+          ],
+          "destination": [
+            "maneuver_js",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "sc-source",
+            2
+          ],
+          "destination": [
+            "maneuver_js",
+            1
+          ],
+          "order": 1
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "sc-source",
+            2
+          ],
+          "destination": [
+            "maneuver_meta_send",
+            0
+          ],
+          "order": 0
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "sc-source",
+            4
+          ],
+          "destination": [
+            "maneuver_js",
+            0
+          ],
+          "order": 0
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "sc-source",
+            4
+          ],
+          "destination": [
+            "sc-history-reset",
+            0
+          ],
+          "order": 1
         }
       }
     ],
