@@ -1,5 +1,7 @@
 # Fliegenschwarm Group Work — SuperCollider Input
 
+IEM Computermusik Aktuell mit David Pirro.
+
 Arbeitskopie für die Weiterentwicklung des Fliegenschwarms. Die bisherige Bewegung und Synthese sind noch vorhanden; der OSC-Umbau steht aus.
 
 ## Öffnen in Max
