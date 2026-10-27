@@ -193,6 +193,18 @@
       "FSC_20261026_radial_pulse.maxpat": {
         "kind": "patcher",
         "local": 1
+      },
+      "FSC_20261026_SC_PositionSource.maxpat": {
+        "kind": "patcher",
+        "local": 1
+      },
+      "FSC_20261026_SC_XYHistory.maxpat": {
+        "kind": "patcher",
+        "local": 1
+      },
+      "FSC_20261026_OSC_Testsender.maxpat": {
+        "kind": "patcher",
+        "local": 1
       }
     },
     "code": {
@@ -269,18 +281,6 @@
         "local": 1
       },
       "FSC_20261026_preset_path.js": {
-        "kind": "javascript",
-        "local": 1
-      },
-      "FSC_20261026_external_swarm.js": {
-        "kind": "javascript",
-        "local": 1
-      },
-      "FSC_20261026_position_source.js": {
-        "kind": "javascript",
-        "local": 1
-      },
-      "FSC_20261026_xy_history.js": {
         "kind": "javascript",
         "local": 1
       }

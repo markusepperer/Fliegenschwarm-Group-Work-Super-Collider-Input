@@ -1809,6 +1809,81 @@
           ],
           "text": "prepend snakedeviationgroup"
         }
+      },
+      {
+        "box": {
+          "id": "sc-route",
+          "maxclass": "newobj",
+          "text": "route external externalpos externalstate externaltick",
+          "numinlets": 1,
+          "numoutlets": 5,
+          "patching_rect": [
+            30.0,
+            200.0,
+            339.20000000000005,
+            22.0
+          ]
+        }
+      },
+      {
+        "box": {
+          "id": "sc-pre-external",
+          "maxclass": "newobj",
+          "text": "prepend external",
+          "numinlets": 1,
+          "numoutlets": 1,
+          "patching_rect": [
+            30.0,
+            240.0,
+            102.4,
+            22.0
+          ]
+        }
+      },
+      {
+        "box": {
+          "id": "sc-pre-externalpos",
+          "maxclass": "newobj",
+          "text": "prepend externalpos",
+          "numinlets": 1,
+          "numoutlets": 1,
+          "patching_rect": [
+            240.0,
+            240.0,
+            121.60000000000001,
+            22.0
+          ]
+        }
+      },
+      {
+        "box": {
+          "id": "sc-pre-externalstate",
+          "maxclass": "newobj",
+          "text": "prepend externalstate",
+          "numinlets": 1,
+          "numoutlets": 1,
+          "patching_rect": [
+            450.0,
+            240.0,
+            134.4,
+            22.0
+          ]
+        }
+      },
+      {
+        "box": {
+          "id": "sc-pre-externaltick",
+          "maxclass": "newobj",
+          "text": "prepend externaltick",
+          "numinlets": 1,
+          "numoutlets": 1,
+          "patching_rect": [
+            660.0,
+            240.0,
+            128.0,
+            22.0
+          ]
+        }
       }
     ],
     "lines": [
@@ -1906,18 +1981,6 @@
           ],
           "source": [
             "cmd-recv",
-            0
-          ]
-        }
-      },
-      {
-        "patchline": {
-          "destination": [
-            "router",
-            0
-          ],
-          "source": [
-            "ctrl",
             0
           ]
         }
@@ -3460,6 +3523,126 @@
           ],
           "source": [
             "xy-unpack",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "sc-route",
+            0
+          ],
+          "destination": [
+            "sc-pre-external",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "sc-pre-external",
+            0
+          ],
+          "destination": [
+            "cmd-send",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "sc-route",
+            1
+          ],
+          "destination": [
+            "sc-pre-externalpos",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "sc-pre-externalpos",
+            0
+          ],
+          "destination": [
+            "cmd-send",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "sc-route",
+            2
+          ],
+          "destination": [
+            "sc-pre-externalstate",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "sc-pre-externalstate",
+            0
+          ],
+          "destination": [
+            "cmd-send",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "sc-route",
+            3
+          ],
+          "destination": [
+            "sc-pre-externaltick",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "sc-pre-externaltick",
+            0
+          ],
+          "destination": [
+            "cmd-send",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "ctrl",
+            0
+          ],
+          "destination": [
+            "sc-route",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "sc-route",
+            4
+          ],
+          "destination": [
+            "router",
             0
           ]
         }

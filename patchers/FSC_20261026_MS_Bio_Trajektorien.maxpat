@@ -1383,28 +1383,13 @@
         "box": {
           "id": "sc-source",
           "maxclass": "newobj",
-          "text": "js FSC_20261026_position_source.js #1",
+          "text": "FSC_20261026_SC_PositionSource",
           "numinlets": 5,
           "numoutlets": 5,
           "patching_rect": [
             20,
             850,
-            222,
-            22
-          ]
-        }
-      },
-      {
-        "box": {
-          "id": "sc-position-recv",
-          "maxclass": "newobj",
-          "text": "r #1FSC_20261026_external_position",
-          "numinlets": 1,
-          "numoutlets": 1,
-          "patching_rect": [
-            20,
-            810,
-            204,
+            290.0,
             22
           ]
         }
@@ -2705,18 +2690,6 @@
         "patchline": {
           "source": [
             "in",
-            0
-          ],
-          "destination": [
-            "sc-source",
-            0
-          ]
-        }
-      },
-      {
-        "patchline": {
-          "source": [
-            "sc-position-recv",
             0
           ],
           "destination": [
