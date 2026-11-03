@@ -9,7 +9,7 @@
             "modernui": 1
         },
         "classnamespace": "box",
-        "rect": [ 25.0, 95.0, 593.0, 800.0 ],
+        "rect": [ 107.0, 175.0, 895.0, 795.0 ],
         "openinpresentation": 1,
         "boxes": [
             {
@@ -74,7 +74,7 @@
                     "maxclass": "comment",
                     "numinlets": 1,
                     "numoutlets": 0,
-                    "patching_rect": [ 30.0, 180.0, 800.0, 20.0 ],
+                    "patching_rect": [ 6.5, 1051.898720383644, 800.0, 20.0 ],
                     "presentation": 1,
                     "presentation_rect": [ 30.0, 175.0, 800.0, 20.0 ],
                     "text": "100 Updates pro Sekunde für jede ID · insgesamt 5.000 OSC-Nachrichten/s"
@@ -86,7 +86,7 @@
                     "maxclass": "comment",
                     "numinlets": 1,
                     "numoutlets": 0,
-                    "patching_rect": [ 30.0, 220.0, 850.0, 20.0 ],
+                    "patching_rect": [ 6.5, 1092.4050489664078, 850.0, 20.0 ],
                     "presentation": 1,
                     "presentation_rect": [ 30.0, 265.0, 800.0, 20.0 ],
                     "text": "Künstliche Testbewegungen: Jede Fliege bewegt sich auf einer eigenen glatten Bahn. X und Y bleiben zwischen 0,15 und 0,85."
@@ -98,7 +98,7 @@
                     "maxclass": "comment",
                     "numinlets": 1,
                     "numoutlets": 0,
-                    "patching_rect": [ 30.0, 270.0, 850.0, 20.0 ],
+                    "patching_rect": [ 6.5, 1141.772136926651, 850.0, 20.0 ],
                     "presentation": 1,
                     "presentation_rect": [ 30.0, 320.0, 800.0, 20.0 ],
                     "text": "Im Hauptpatch: „SuperCollider“ einschalten, aktive Anzahl einstellen und „davon in Bewegung“ freigeben. Dann hier „Senden starten“."
@@ -110,7 +110,7 @@
                     "maxclass": "comment",
                     "numinlets": 1,
                     "numoutlets": 0,
-                    "patching_rect": [ 30.0, 340.0, 800.0, 20.0 ],
+                    "patching_rect": [ 211.3924022912979, 859.4936596155167, 293.6708822250366, 20.0 ],
                     "presentation": 1,
                     "presentation_rect": [ 30.0, 390.0, 800.0, 20.0 ],
                     "text": "Zuletzt gesendete Nachricht (Anzeige gedrosselt):"
@@ -123,19 +123,20 @@
                     "numinlets": 2,
                     "numoutlets": 1,
                     "outlettype": [ "" ],
-                    "patching_rect": [ 30.0, 380.0, 500.0, 22.0 ],
+                    "patching_rect": [ 211.3924022912979, 885.0, 151.89873218536377, 22.0 ],
                     "presentation": 1,
                     "presentation_rect": [ 30.0, 420.0, 620.0, 22.0 ],
-                    "text": "/fly 50 0.153084 0.559693"
+                    "text": "/fly 50 0.678221 0.80672"
                 }
             },
             {
                 "box": {
                     "id": "stopnote",
+                    "linecount": 7,
                     "maxclass": "comment",
                     "numinlets": 1,
                     "numoutlets": 0,
-                    "patching_rect": [ 30.0, 430.0, 850.0, 20.0 ],
+                    "patching_rect": [ 72.15189778804779, 164.55695986747742, 106.32911252975464, 100.0 ],
                     "presentation": 1,
                     "presentation_rect": [ 30.0, 475.0, 800.0, 20.0 ],
                     "text": "„Senden stoppen“ hält den Datenstrom an. Im Hauptpatch bleiben die Fliegen an ihren letzten Positionen."
@@ -148,7 +149,7 @@
                     "numinlets": 1,
                     "numoutlets": 1,
                     "outlettype": [ "" ],
-                    "patching_rect": [ 620.0, 130.0, 70.0, 22.0 ],
+                    "patching_rect": [ 30.0, 88.60759377479553, 70.0, 22.0 ],
                     "text": "loadmess 0"
                 }
             },
@@ -159,7 +160,7 @@
                     "numinlets": 2,
                     "numoutlets": 1,
                     "outlettype": [ "bang" ],
-                    "patching_rect": [ 30.0, 510.0, 70.0, 22.0 ],
+                    "patching_rect": [ 30.0, 282.27847731113434, 70.0, 22.0 ],
                     "text": "qmetro 10"
                 }
             },
@@ -170,7 +171,7 @@
                     "numinlets": 2,
                     "numoutlets": 1,
                     "outlettype": [ "float" ],
-                    "patching_rect": [ 30.0, 550.0, 70.0, 22.0 ],
+                    "patching_rect": [ 64.0, 344.3037929534912, 70.0, 22.0 ],
                     "text": "f 1."
                 }
             },
@@ -181,7 +182,7 @@
                     "numinlets": 1,
                     "numoutlets": 2,
                     "outlettype": [ "bang", "float" ],
-                    "patching_rect": [ 30.0, 590.0, 70.0, 22.0 ],
+                    "patching_rect": [ 49.367087960243225, 520.2531577348709, 70.0, 22.0 ],
                     "text": "t b f"
                 }
             },
@@ -192,7 +193,7 @@
                     "numinlets": 2,
                     "numoutlets": 1,
                     "outlettype": [ "float" ],
-                    "patching_rect": [ 595.0, 590.0, 70.0, 22.0 ],
+                    "patching_rect": [ 430.379741191864, 587.3417644500732, 70.0, 22.0 ],
                     "text": "* 0.01"
                 }
             },
@@ -203,7 +204,7 @@
                     "numinlets": 2,
                     "numoutlets": 3,
                     "outlettype": [ "bang", "bang", "int" ],
-                    "patching_rect": [ 30.0, 640.0, 70.0, 22.0 ],
+                    "patching_rect": [ 49.367087960243225, 554.4303724765778, 70.0, 22.0 ],
                     "text": "uzi 50"
                 }
             },
@@ -214,7 +215,7 @@
                     "numinlets": 1,
                     "numoutlets": 3,
                     "outlettype": [ "int", "int", "int" ],
-                    "patching_rect": [ 30.0, 680.0, 70.0, 22.0 ],
+                    "patching_rect": [ 100.36708796024323, 594.9367010593414, 70.0, 22.0 ],
                     "text": "t i i i"
                 }
             },
@@ -225,7 +226,7 @@
                     "numinlets": 2,
                     "numoutlets": 1,
                     "outlettype": [ "" ],
-                    "patching_rect": [ 260.0, 650.0, 330.0, 22.0 ],
+                    "patching_rect": [ 110.12658083438873, 650.6329028606415, 330.0, 22.0 ],
                     "text": "expr 0.5 + 0.35*sin((0.27+($i1 % 7)*0.017)*$f2+$i1*0.47)"
                 }
             },
@@ -236,7 +237,7 @@
                     "numinlets": 2,
                     "numoutlets": 1,
                     "outlettype": [ "" ],
-                    "patching_rect": [ 260.0, 705.0, 350.0, 22.0 ],
+                    "patching_rect": [ 155.06328451633453, 705.0632818937302, 350.0, 22.0 ],
                     "text": "expr 0.5 + 0.35*sin((0.19+($i1 % 11)*0.013)*$f2+$i1*0.71+1.2)"
                 }
             },
@@ -279,8 +280,8 @@
                     "numinlets": 2,
                     "numoutlets": 1,
                     "outlettype": [ "" ],
-                    "patching_rect": [ 370.0, 810.0, 80.0, 22.0 ],
-                    "text": "speedlim 200"
+                    "patching_rect": [ 110.12658083438873, 841.7721408605576, 73.0, 22.0 ],
+                    "text": "speedlim 20"
                 }
             },
             {
@@ -316,7 +317,7 @@
                     "numoutlets": 2,
                     "outlettype": [ "", "bang" ],
                     "parameter_enable": 0,
-                    "patching_rect": [ 163.0, 1027.0, 140.0, 22.0 ],
+                    "patching_rect": [ 279.7468317747116, 289.8734139204025, 140.0, 22.0 ],
                     "presentation": 1,
                     "presentation_rect": [ 115.0, 207.0, 90.0, 22.0 ],
                     "varname": "FSC_20261026_test_speed"
@@ -329,7 +330,7 @@
                     "maxclass": "comment",
                     "numinlets": 1,
                     "numoutlets": 0,
-                    "patching_rect": [ 318.0, 1027.0, 316.0, 33.0 ],
+                    "patching_rect": [ 815.1898627281189, 494.9367023706436, 316.0, 33.0 ],
                     "presentation": 1,
                     "presentation_rect": [ 220.0, 200.0, 350.0, 20.0 ],
                     "text": "0 = Stillstand · 1 = bisheriges Tempo · 4 = vierfach · bis 20"
@@ -342,7 +343,7 @@
                     "numinlets": 1,
                     "numoutlets": 1,
                     "outlettype": [ "" ],
-                    "patching_rect": [ 159.0, 993.0, 140.0, 22.0 ],
+                    "patching_rect": [ 279.7468317747116, 253.16455364227295, 140.0, 22.0 ],
                     "text": "loadmess 1."
                 }
             },
@@ -353,7 +354,7 @@
                     "numinlets": 3,
                     "numoutlets": 1,
                     "outlettype": [ "" ],
-                    "patching_rect": [ 163.0, 1084.0, 140.0, 22.0 ],
+                    "patching_rect": [ 279.7468317747116, 321.51898312568665, 140.0, 22.0 ],
                     "text": "clip 0. 20."
                 }
             },
@@ -364,7 +365,7 @@
                     "numinlets": 2,
                     "numoutlets": 1,
                     "outlettype": [ "float" ],
-                    "patching_rect": [ 170.0, 550.0, 140.0, 22.0 ],
+                    "patching_rect": [ 55.69620180130005, 392.40505814552307, 140.0, 22.0 ],
                     "text": "+ 0."
                 }
             },
@@ -375,7 +376,7 @@
                     "numinlets": 1,
                     "numoutlets": 2,
                     "outlettype": [ "float", "float" ],
-                    "patching_rect": [ 170.0, 590.0, 140.0, 22.0 ],
+                    "patching_rect": [ 49.367087960243225, 486.07594299316406, 140.0, 22.0 ],
                     "text": "t f f"
                 }
             }
@@ -404,7 +405,6 @@
             {
                 "patchline": {
                     "destination": [ "last-message", 1 ],
-                    "midpoints": [ 379.5, 843.0, 891.0, 843.0, 891.0, 375.0, 520.5, 375.0 ],
                     "source": [ "display-limit", 0 ]
                 }
             },
@@ -477,6 +477,7 @@
             {
                 "patchline": {
                     "destination": [ "phase-add", 1 ],
+                    "midpoints": [ 179.86708796024323, 510.0, 207.0, 510.0, 207.0, 387.0, 186.19620180130005, 387.0 ],
                     "source": [ "phase-feedback", 1 ]
                 }
             },
